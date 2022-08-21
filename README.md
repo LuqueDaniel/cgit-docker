@@ -1,6 +1,6 @@
 # Cgit Docker
 
-![GitHub](https://img.shields.io/github/license/LuqueDaniel/cgit-docker?style=flat-square)
+[![GitHub](https://img.shields.io/github/license/LuqueDaniel/cgit-docker?style=flat-square)](https://github.com/LuqueDaniel/cgit-docker/blob/main/LICENSE)
 
 Docker image for [Cgit](https://git.zx2c4.com/cgit/about/) a web interface for [Git](https://git-scm.com/) repositories.
 
