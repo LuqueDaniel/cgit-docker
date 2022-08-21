@@ -1,0 +1,4 @@
+#!/bin/sh
+# This script replaces the original filters/html-converters/rst2html script from cgit.
+# --quiet to suppress rst2html.py system messages
+exec rst2html.py --quiet --template <(echo -e "%(stylesheet)s\n%(body_pre_docinfo)s\n%(docinfo)s\n%(body)s")
