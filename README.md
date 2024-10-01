@@ -44,8 +44,26 @@ The Cgit `scan-path` configuration parameter is set to read repositories from th
       - git-vlume:/opt/git/
 ```
 
-## References
+## How To add Basic Auth and allow push
+This example show how to add basic auth (and allow push changes) to you cgit server.
 
+```sh
+# up example [docker-compose.auth-example.yml] configuration
+docker compose -f docker-compose.auth-example.yml down -v && docker compose -f docker-compose.auth-example.yml up --build
+
+# clone repo as root
+docker compose -f docker-compose.auth-example.yml exec cgit git clone --bare https://github.com/nginx/nginx.git /opt/git/nginx.git
+
+# setup permission to allow write by fcgiwrap process
+docker compose -f docker-compose.auth-example.yml exec cgit chown -R fcgiwrap:www-data /opt/git/nginx.git
+
+# clone repo (use: dev / 123), make some changes and push back
+git clone http://localhost:8082/nginx /tmp/nginx-cloned
+echo "CHANGED" >> /tmp/nginx-cloned/README.md
+(cd /tmp/nginx-cloned && git add . && git commit -m 'changed' && git push)
+```
+
+## References
 * [Cgit README](https://git.zx2c4.com/cgit/tree/README)
 * [Cgit configuration](https://git.zx2c4.com/cgit/tree/cgitrc.5.txt)
 * [cgit - ArchWiki](https://wiki.archlinux.org/title/Cgit)
