@@ -1,6 +1,6 @@
 ARG ALPINE_VERSION=3.20
 ARG CGIT_VERSION=09d24d7cd0b7e85633f2f43808b12871bb209d69
-ARG NGINX_VERSION=1.27.1
+ARG NGINX_VERSION=1.27.2
 
 FROM alpine:${ALPINE_VERSION} AS build
 ARG CGIT_VERSION
@@ -47,7 +47,10 @@ RUN apk add --no-cache \
     lua5.1-http \
     mailcap \
     && ln -sf python3 /usr/bin/python \
-    && python -m pip install rst2html --break-system-packages
+    && python -m pip install --no-cache-dir --break-system-packages rst2html \
+    && rm -rf ${HOME}/.cache/*
+
+ENV CGIT_APP_USER=nginx
 
 COPY ./rootfs/ /
 COPY --from=build /opt/cgit /opt/cgit

@@ -55,7 +55,7 @@ docker compose -f docker-compose.auth-example.yml down -v && docker compose -f d
 docker compose -f docker-compose.auth-example.yml exec cgit git clone --bare https://github.com/nginx/nginx.git /opt/git/nginx.git
 
 # setup permission to allow write by fcgiwrap process
-docker compose -f docker-compose.auth-example.yml exec cgit chown -R fcgiwrap:www-data /opt/git/nginx.git
+docker compose -f docker-compose.auth-example.yml exec cgit chown -R nginx:nginx /opt/git/nginx.git
 
 # clone repo (use: dev / 123), make some changes and push back
 git clone http://localhost:8082/nginx /tmp/nginx-cloned
