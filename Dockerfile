@@ -26,7 +26,6 @@ RUN git clone https://git.zx2c4.com/cgit . \
  && git submodule update --init --recursive
 
 COPY ["cgit_build.conf", "/opt/cgit-repo/cgit.conf"]
-RUN git submodule init && git submodule update
 RUN make && make install
 
 
