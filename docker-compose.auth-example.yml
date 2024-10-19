@@ -1,0 +1,12 @@
+services:
+  cgit:
+    restart: always
+    container_name: cgit
+    build: .
+    ports:
+      - "8082:80"
+    volumes:
+      - ./auth-example/etc/nginx/cgit.conf:/etc/nginx/cgit.conf:ro
+      - ./auth-example/etc/nginx/git-http-backend_read.conf:/etc/nginx/git-http-backend_read.conf:ro
+      - ./auth-example/etc/nginx/git-http-backend_write.conf:/etc/nginx/git-http-backend_write.conf:ro
+      - ./auth-example/etc/nginx/.htpasswd:/etc/nginx/.htpasswd:ro
